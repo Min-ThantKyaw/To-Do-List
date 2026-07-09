@@ -220,82 +220,254 @@
                 </div>
 
                 <div
-                    class="bg-white dark:bg-dark shadow overflow-hidden sm:rounded-md border border-gray-200 dark:border-gray-800">
+                    class="">
                     <ul role="list" id="taskList" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <!-- Tasks will be dynamically added here -->
+                        <li
+                        class="group mb-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark hover:border-primary hover:shadow-md transition-all duration-200">
 
-                        <!-- Task Item 2 (Medium Priority, Today) -->
-                        <li class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                            <div class="px-4 py-4 sm:px-6 flex items-start gap-4">
-                                <div class="mt-1">
-                                    <input type="checkbox"
-                                        class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 cursor-pointer">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex items-center justify-between">
-                                        <p class="text-sm font-medium text-gray-900 dark:text-white truncate">Buy
-                                            groceries for the week</p>
-                                        <div class="ml-2 flex-shrink-0 flex">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 border border-yellow-200 dark:border-yellow-800">Medium</span>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 sm:flex sm:justify-between">
-                                        <div class="sm:flex">
-                                            <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                <i
-                                                    class="ph ph-shopping-cart mr-1.5 text-lg flex-shrink-0 text-purple-500"></i>
-                                                Shopping
-                                            </p>
-                                        </div>
-                                        <div class="mt-2 flex items-center text-sm text-secondary sm:mt-0">
-                                            <i class="ph ph-calendar mr-1.5 text-lg flex-shrink-0"></i>
-                                            <p>Today, 5:00 PM</p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="flex gap-4 p-4">
+
+                            <!-- Checkbox -->
+                            <div class="pt-1">
+                                <input
+                                type="checkbox"
+                                class="h-5 w-5 rounded text-primary focus:ring-primary">
                             </div>
-                        </li>
 
-                        <!-- Task Item 3 (Low Priority, Upcoming) -->
-                        <li class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors opacity-75">
-                            <div class="px-4 py-4 sm:px-6 flex items-start gap-4">
-                                <div class="mt-1">
-                                    <input type="checkbox"
-                                        class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 cursor-pointer"
-                                        checked>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex items-center justify-between">
-                                        <p
-                                            class="text-sm font-medium text-gray-500 dark:text-gray-400 line-through truncate">
-                                            Call mom</p>
-                                        <div class="ml-2 flex-shrink-0 flex">
+                            <!-- Content -->
+                            <div class="flex-1 min-w-0">
+
+                                <div class="flex justify-between items-start">
+
+                                    <div>
+
+                                        <div class="flex flex-wrap items-center gap-2">
+
+                                            <h3
+                                            class="font-semibold text-gray-900 dark:text-white">
+
+                                                Design Landing Page
+
+                                            </h3>
+
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-600">Low</span>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 sm:flex sm:justify-between">
-                                        <div class="sm:flex">
-                                            <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                <i class="ph ph-user mr-1.5 text-lg flex-shrink-0 text-green-500"></i>
-                                                Personal
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                                            class="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-600">
 
+                                                High
+
+                                            </span>
+
+                                        </div>
+
+                                        <p class="mt-2 text-sm text-gray-500">
+
+                                            Build responsive landing page for desktop and mobile.
+
+                                        </p>
+
+                                        <div
+                                        class="mt-3 flex flex-wrap gap-4 text-xs text-gray-500">
+
+                                            <span class="flex items-center gap-1">
+
+                                                <i class="ph ph-briefcase"></i>
+
+                                                Work
+
+                                            </span>
+
+                                            <span class="flex items-center gap-1">
+
+                                                <i class="ph ph-calendar"></i>
+
+                                                Today
+
+                                            </span>
+
+                                            <span class="flex items-center gap-1">
+
+                                                <i class="ph ph-clock"></i>
+
+                                                2:30 PM
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <button
+                                    class="rounded-lg p-2 opacity-0 group-hover:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-700">
+
+                                        <i class="ph ph-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        </li>
+                        <li
+                        class="group mb-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-dark hover:border-primary hover:shadow-md transition-all duration-200">
+
+                        <div class="flex gap-4 p-4">
+
+                            <!-- Checkbox -->
+                            <div class="pt-1">
+                                <input
+                                type="checkbox"
+                                class="h-5 w-5 rounded text-primary focus:ring-primary">
+                            </div>
+
+                            <!-- Content -->
+                            <div class="flex-1 min-w-0">
+
+                                <div class="flex justify-between items-start">
+
+                                    <div>
+
+                                        <div class="flex flex-wrap items-center gap-2">
+
+                                            <h3
+                                            class="font-semibold text-gray-900 dark:text-white">
+
+                                                Design Landing Page
+
+                                            </h3>
+
+                                            <span
+                                            class="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-600">
+
+                                                High
+
+                                            </span>
+
+                                        </div>
+
+                                        <p class="mt-2 text-sm text-gray-500">
+
+                                            Build responsive landing page for desktop and mobile.
+
+                                        </p>
+
+                                        <div
+                                        class="mt-3 flex flex-wrap gap-4 text-xs text-gray-500">
+
+                                            <span class="flex items-center gap-1">
+
+                                                <i class="ph ph-briefcase"></i>
+
+                                                Work
+
+                                            </span>
+
+                                            <span class="flex items-center gap-1">
+
+                                                <i class="ph ph-calendar"></i>
+
+                                                Today
+
+                                            </span>
+
+                                            <span class="flex items-center gap-1">
+
+                                                <i class="ph ph-clock"></i>
+
+                                                2:30 PM
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <button
+                                    class="rounded-lg p-2 opacity-0 group-hover:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-700">
+
+                                        <i class="ph ph-trash"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        </li>
                     </ul>
                 </div>
+                <div class="mt-8">
 
-                <div class="mt-6 flex justify-center">
                     <button
-                        class="text-sm font-medium text-primary hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300">
-                        Load completed tasks
-                    </button>
-                </div>
+                        id="toggleCompleted"
+                        class="flex w-full items-center justify-between rounded-lg bg-gray-100 dark:bg-gray-800 px-4 py-3">
 
+                        <div class="flex items-center gap-2">
+
+                            <i
+                            id="completedArrow"
+                            class="ph ph-caret-down transition-transform">
+                            </i>
+
+                            <span class="font-medium">
+
+                                Completed
+
+                            </span>
+
+                            <span
+                            class="rounded-full bg-gray-300 dark:bg-gray-700 px-2 text-xs">
+
+                                5
+
+                            </span>
+
+                        </div>
+
+                    </button>
+
+                    <ul
+                        id="completedList"
+                        class="mt-3 space-y-2">
+                            <li
+                            class="flex items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 px-4 py-3">
+
+                            <div class="flex items-center gap-3">
+
+                                <input
+                                type="checkbox"
+                                class="h-5 w-5 rounded text-primary focus:ring-primary">
+
+                            <div>
+
+                            <p
+                            class="line-through text-gray-400">
+
+                            Setup Git Repository
+
+                            </p>
+
+                            </div>
+
+                            </div>
+
+                            <button
+                            class="text-gray-400 hover:text-red-500">
+
+                            <i class="ph ph-trash"></i>
+
+                            </button>
+
+                            </li>
+
+                    </ul>
+
+                </div>
             </div>
         </main>
     </div>
@@ -321,19 +493,9 @@
                                     <div>
                                         <label for="title" class="sr-only">Task Title</label>
                                         <input type="text" name="title" id="title"
-                                            class="block w-full rounded-md border-0 py-2 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+                                            class="block w-full rounded-md py-2 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                                             placeholder="What needs to be done?">
-                                    </div>
-
-                                    <!-- Description -->
-                                    <div>
-                                        <label for="description"
-                                            class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">Description
-                                            <span class="text-gray-400 font-normal">(Optional)</span></label>
-                                        <div class="mt-1">
-                                            <textarea id="description" name="description" rows="3"
-                                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"></textarea>
-                                        </div>
+                                            <span id="titleError" class="text-red-600 font-extralight text-sm"></span>
                                     </div>
 
                                     <!-- Grid for Filters (Date, Category, Priority) -->
@@ -346,6 +508,7 @@
                                             <div class="relative mt-1">
                                                 <input type="date" id="date" name="date"
                                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 custom-date-input">
+                                                <span id="dateError" class="text-red-600 font-extralight text-sm"></span>
                                             </div>
                                         </div>
 
@@ -359,6 +522,7 @@
                                                 <option value="medium">Medium</option>
                                                 <option value="high">High</option>
                                             </select>
+                                            <span id="priorityError" class="text-red-600 font-extralight text-sm"></span>
                                         </div>
 
                                         <!-- Category -->
@@ -372,6 +536,7 @@
                                                 <option value="personal">Personal</option>
                                                 <option value="shopping">Shopping</option>
                                             </select>
+                                            <span id="categoryError" class="text-red-600 font-extralight text-sm"></span>
                                         </div>
                                     </div>
                                 </form>

@@ -70,6 +70,7 @@ const cancelTaskBtn = document.getElementById('cancelTaskBtn');
 
 function openModal() {
     addTaskModal.classList.remove('hidden');
+    taskForm.reset();
 }
 
 function closeModal() {
@@ -81,14 +82,12 @@ let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 function addTask() {
   //Input fields
   const title = document.getElementById('title').value.trim();
-  const description = document.getElementById('description').value.trim();
   const date = document.getElementById('date').value;
   const priority = document.getElementById('priority').value.trim();
   const category = document.getElementById('category').value.trim();
     const task = {
         id: crypto.randomUUID(),
         title: title,
-        description: description,
         date: date,
         priority: priority,
         category: category,
@@ -98,9 +97,51 @@ function addTask() {
 
     return task;
 }
-function validateForm() {
 
- }
+function validateForm() {
+    const title = document.getElementById('title').value.trim();
+    const date = document.getElementById('date').value;
+    const priority = document.getElementById('priority').value.trim();
+    const category = document.getElementById('category').value.trim();
+
+    const errors = {};
+    if (!title) {
+        errors.title = 'Title is required.';
+    } else if (title.length > 255) {
+        errors.title = "Title must be under 255 character."
+    }
+    if (!date) {
+        errors.date = 'Date is required.';
+    } else if (new Date(date) < new Date()) {
+        errors.date = 'Date must be today or in the future.';
+    }
+    if (!priority) {
+        errors.priority = 'Priority is required.';
+    }
+    if (!category) {
+        errors.category = 'Category is required.';
+    }
+    return {valid: Object.keys(errors).length === 0, ...errors};
+}
+
+function showError(errors) {
+
+    for (const [field, message] of Object.entries(errors)) {
+        const errorEl = document.getElementById(`${field}Error`);
+        const inputEl = document.getElementById(field);
+
+        if (errorEl) {
+            errorEl.textContent = message;
+            errorEl.classList.remove('hidden');
+        }
+
+        if (inputEl) {
+            inputEl.classList.add('ring-red-500', 'border-red-500');
+        }
+    }
+}
+
+ //Save task to local storage
 function saveTask(task) {
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -109,6 +150,13 @@ function saveTask(task) {
 
 taskForm.addEventListener('submit', (event) => {
     event.preventDefault();
+    const validation = validateForm();
+    console.log(validation);
+    if (!validation.valid) {
+        showError(validation.errors);
+        return;
+    }
+    clearErrors();
     let task = addTask();
     saveTask(task);
     renderTasks();
@@ -117,7 +165,7 @@ cancelTaskBtn.addEventListener('click', closeModal);
 
 //Show tasks
 const priorityColors = {
-    high: 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 border border-red-200 dark:border-red-800',
+    high: '',
     medium:'',
     low: ''
 }
@@ -128,42 +176,10 @@ function renderTasks() {
     tasksContainer.innerHTML = '';
     tasks.forEach(task => {
         const taskElement = document.createElement('div');
-        taskElement.innerHTML = `<li class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                            <div class="px-4 py-4 sm:px-6 flex items-start gap-4">
-                                <div class="mt-1">
-                                    <input type="checkbox" id="taskCheckbox" ${task.completed ? 'checked' : ''}
-                                        class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary dark:border-gray-600 dark:bg-gray-700 cursor-pointer">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex items-center justify-between">
-                                        <p class="text-sm font-medium text-gray-900 dark:text-white truncate">${task.title}</p>
-                                        <div class="ml-2 flex-shrink-0 flex">
-                                            <span
-                                                class="${priorityColors[task.priority]}">${task.priority.toUpperCase()}</span>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 sm:flex sm:justify-between">
-                                        <div class="sm:flex">
-                                            <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                <i
-                                                    class="ph ph-briefcase mr-1.5 text-lg flex-shrink-0 text-blue-500"></i>
-                                                ${task.category.toUpperCase()}
-                                            </p>
-                                        </div>
-                                        <div
-                                            class="mt-2 flex items-center text-sm text-red-600 dark:text-red-400 sm:mt-0">
-                                            <i class="ph ph-calendar mr-1.5 text-lg flex-shrink-0"></i>
-                                            <p>${task.date}</p>
-                                        </div>
-                                    </div>
-                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-1">${task.description}
-                                    </p>
-                                </div>
-                            </div>
-                        </li>`;
+        taskElement.innerHTML = ``;
         tasksContainer.appendChild(taskElement);
     });
 }
-window.addEventListener('DOMContentLoaded', () => {
-    renderTasks();
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//     renderTasks();
+// });
