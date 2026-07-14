@@ -63,11 +63,11 @@ function themeToggle() {
 function completeListToggle() {
   isCompletedListOpen = !isCompletedListOpen;
   if (!isCompletedListOpen) {
-    completedTasksContainer.classList.add('hidden');
-    completedArrow.classList.replace('ph-caret-down', 'ph-caret-up');
+    completedTasksContainer.classList.add("hidden");
+    completedArrow.classList.replace("ph-caret-down", "ph-caret-up");
   } else {
-    completedTasksContainer.classList.remove('hidden');
-    completedArrow.classList.replace('ph-caret-up', 'ph-caret-down');
+    completedTasksContainer.classList.remove("hidden");
+    completedArrow.classList.replace("ph-caret-up", "ph-caret-down");
   }
 }
 
@@ -193,6 +193,26 @@ function toggleCompletedStatus(taskId) {
   }
   return task;
 }
+function tasksCount() {
+  const completedTasks = tasks.filter((task) => task.completed).length;
+  const totalTasks = tasks.filter(task => !task.completed).length;
+  const todayTasks = "";
+  const upcomingTasks = "";
+  return {
+    completedTasks, totalTasks, todayTasks, upcomingTasks
+}
+}
+
+function renderTaskCount() {
+  let counts = tasksCount();
+  const completeBadge = toggelCompletedBtn.querySelector('.badge')
+  completeBadge.innerHTML = "";
+  if (counts.completedTasks > 0) {
+    console.log(counts.completedTasks)
+    completeBadge.innerHTML = counts.completedTasks;
+  }
+  console.log(counts.completedTasks)
+}
 
 function renderTasks() {
   const pendingTasks = tasks.filter((task) => !task.completed);
@@ -259,8 +279,8 @@ function renderTasks() {
                         </li>`;
     tasksContainer.appendChild(li);
   });
-  console.log(completedTasks)
-  completedTasks.forEach(completedTask => {
+
+  completedTasks.forEach((completedTask) => {
     const li = document.createElement("li");
     li.setAttribute("data-id", completedTask.id);
     li.className =
@@ -280,16 +300,69 @@ function renderTasks() {
                   </div>
                 </div>
 
+                <span class="flex items-center gap-1">
+                  <i class="ph ph-briefcase"></i>
+                  ${completedTask.category}
+                </span>
+                <span class="flex items-center gap-1">
+                  <i class="ph ph-calendar"></i>
+                  ${completedTask.date}
+                </span>
+                  </div>
                 <button class="delete-btn text-gray-400 hover:text-red-500">
                   <i class="ph ph-trash"></i>
                 </button>
               </li>`;
     completedTasksContainer.appendChild(li);
-  })
-
-
+  });
 }
 
+/**
+ * Categories
+ */
+  const addCategoryBtn = document.getElementById("categoryBtn");
+  const categoryInput = document.getElementById("categoryInput");
+  const storedCategories = JSON.parse(localStorage.getItem("categories"));
+  const categories = Array.isArray(storedCategories) ? storedCategories : [];
+
+function getCategoriesFormdata() {
+  return {
+    id: crypto.randomUUID(),
+    name: categoryInput.value,
+    createdAt: new Date().toISOString(),
+  }
+}
+  
+function saveCategory() {
+  let formData = getCategoriesFormdata();
+  if (formData.name.trim() !== "") {
+      categories.push(formData);
+      localStorage.setItem("categories", JSON.stringify(categories));
+      categoryInput.value = "";
+    }
+  }
+
+function deleteCategory(categoryId) {
+  categoryId = categories.findIndex(category => category.id == categoryId);
+  if (categoryId > -1) {
+    categories.splice(categoryId, 1);
+    localStorage.setItem("categories", JSON.stringify(categories));
+  }
+}
+function renderCategories() {
+  const categoryList = document.getElementById("categoryContainer");
+  categoryList.innerHTML = "";
+
+  categories.forEach(category => {
+    const a = document.createElement("a");
+    a.setAttribute("data-id", category.id);
+    a.className ='text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md';
+    a.innerHTML = `<span class="w-3 h-3 mr-4"><i class="ph ph-trash"></i></span>
+                      ${category.name}`;
+        categoryList.appendChild(a);
+  })
+  
+  }
 //Event listeners
 themeToggleBtn.addEventListener("click", themeToggle);
 sidebarToggleBtn.addEventListener("click", sidebarToggle);
@@ -300,6 +373,10 @@ window.addEventListener("resize", () => {
   isMobileView = window.innerWidth < 1024;
   initSidebar();
 });
+addCategoryBtn.addEventListener("click", () => {
+  saveCategory();
+  renderCategories();
+})
 taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const validation = validateForm();
@@ -315,22 +392,32 @@ taskForm.addEventListener("submit", (event) => {
 document.addEventListener("click", (event) => {
   const target = event.target;
   const listItem = target.closest("li[data-id]");
+  const categoryItem = target.closest("a[data-id]");
   if (!listItem) return;
 
   const taskId = listItem.getAttribute("data-id");
 
   if (target.type === "checkbox") {
-    console.log(taskId);
     toggleCompletedStatus(taskId);
     renderTasks();
+    renderTaskCount();
   } else if (target.closest(".delete-btn")) {
     deleteTask(taskId);
     renderTasks();
+    renderTaskCount();
+  }
+  if (!categoryItem) return;
+  if(target.closest(".ph-trash" ))
+{
+    deleteCategory(categoryItem.getAttribute("data-id"));
+    renderCategories();
   }
 });
 
 window.addEventListener("DOMContentLoaded", () => {
   renderTasks();
+  renderCategories();
+  renderTaskCount()
   initTheme();
   initSidebar();
 });
