@@ -1,0 +1,20 @@
+[
+  {
+    "id": "todo-101",
+    "title": "Buy groceries",
+    "date": "2026-07-25",
+    "priority": "high",
+    "category": "Personal",
+    "completed": false,
+    "createdAt": "2026-07-20T14:30:00.000Z"
+  },
+  {
+    "id": "todo-102",
+    "title": "Gym workout",
+    "date": "2026-07-24",
+    "priority": "medium",
+    "category": "Health",
+    "completed": true,
+    "createdAt": "2026-07-19T08:00:00.000Z"
+  }
+]
