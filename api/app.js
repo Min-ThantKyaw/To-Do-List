@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-// TODO: Import your route files here
+//route files
 const tasksRoutes = require('./src/routes/tasks.routes');
 // const categoriesRoutes = require('./src/routes/categories.routes');
 
@@ -12,7 +12,7 @@ app.use(cors()); // Allow frontend requests
 app.use(express.json()); // Parse JSON request bodies
 
 // TODO: Mount your routes here
-app.use('/api/tasks', tasksRoutes);
+app.use('/api', tasksRoutes);
 // app.use('/api/categories', categoriesRoutes);
 
 // 404 handler for unknown routes
