@@ -14,13 +14,13 @@ This project is intentionally kept simple so you can focus on learning how a fro
 
 ## Features
 
-- Add, view, and delete tasks
-- Set priority (low, medium, high)
-- Set due dates
-- Organize tasks by category
-- Mark tasks as completed
-- Dark mode support
-- Responsive sidebar
+- [ ] Add, view, and delete tasks
+- [ ] Set priority (low, medium, high)
+- [ ] Set due dates
+- [ ] Organize tasks by category
+- [ ] Mark tasks as completed
+- [ ] Dark mode support
+- [ ] Responsive sidebar
 
 ---
 
