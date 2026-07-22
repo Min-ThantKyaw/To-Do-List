@@ -1,11 +1,19 @@
 const { get } = require('https');
 const path = require('path');
-const dbPath = path.join(__dirname, '..', 'data', 'tasks.json');
+const fs = require('fs').promises;
+const TASK_DATA = path.join(__dirname, '..', '..', 'data', 'tasks.json');
 
-const getAllTasks = () => {
-	return dbPath;
-};
+const findAll = async () => {
+	const taskData = await fs.readFile(TASK_DATA, 'utf8');
+	return JSON.parse(taskData);
+}
+
+const findById = async (id) => {
+	const tasks = await findAll();
+	return tasks.find(task => task.id === id);
+}
 
 module.exports = {
-	getAllTasks
+	findAll,
+	findById
 }

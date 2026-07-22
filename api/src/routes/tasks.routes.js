@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { getAll } = require('../controllers/tasks.controller');
+const { getTasks, getTask } = require('../controllers/tasks.controller');
 
-router.get('/tasks', getAll);
+router.get('/tasks', getTasks);
+router.get('/tasks/:id', getTask);
 
 module.exports = router;
