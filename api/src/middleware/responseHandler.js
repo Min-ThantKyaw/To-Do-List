@@ -4,15 +4,7 @@ const responseHandler = (req, res, next) => {
 			success: true,
 			message,
 			status: statusCode,
-			data
-		});
-	};
-
-	res.error = (message = 'Internal Server Error', statusCode = 500, errors = null) => {
-		return res.status(statusCode).json({
-			success: false,
-			message,
-			error: errors
+			data,
 		});
 	};
 
