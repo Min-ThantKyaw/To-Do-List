@@ -2,8 +2,8 @@ const taskService = require("../services/tasks.service");
 
 exports.getTasks = async (req, res, next) => {
   try {
-    const tasks = await taskService.getPendingTasks();
-    return res.success(tasks, "Get all tasks successfully.");
+    const result = await taskService.getPendingTasks();
+    return res.success(result.data, result.message);
   } catch (error) {
     next(error);
   }
@@ -12,8 +12,9 @@ exports.getTasks = async (req, res, next) => {
 exports.getTaskById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const task = await taskService.getTaskById(id);
-    return res.success(task, `Get id ${id} successfully.`);
+    const result = await taskService.getTaskById(id);
+    if (!result.success) return res.status(404).json(result);
+    return res.success(result.data, result.message);
   } catch (error) {
     next(error);
   }
@@ -22,13 +23,22 @@ exports.getTaskById = async (req, res, next) => {
 exports.createTask = async (req, res, next) => {
   try {
     const formData = req.body;
-    const newTask = await taskService.createTask(formData);
-    res.success(newTask, "Task was created successfully.");
+    const result = await taskService.createTask(formData);
+    return res.success(result.data, result.message);
   } catch (error) {
     next(error);
   }
 };
 
-exports.deleteTask = async (req, res, next) => {};
+exports.deleteTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const {success, message, data} = await taskService.deleteTask(id);
+    if (!success) return res.status(404).json(data);
+    return res.success(data, message);
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.updateTask = async (req, res, next) => {};

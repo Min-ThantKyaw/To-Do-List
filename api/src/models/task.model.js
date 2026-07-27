@@ -18,12 +18,21 @@ exports.findAll = async () => {
 
 exports.findById = async (id) => {
   const tasks = await readData();
-  return tasks ? tasks.find((task) => task && task.id === id) : null;
+  const task = tasks.find((task) => task.id === id);
+  if(!task) throw new Error("No task found");
+  return task;
 };
 
 exports.save = async (tasks) => {
   return await writeData(tasks);
 };
+
+exports.remove = async (id) => {
+  const tasks = await readData();
+  const remaining = tasks.filter((task) => task && task.id !== id);
+  await writeData(remaining);
+  return remaining.length < tasks.length;
+}
 
 exports.update = async (id, updateTask) => {
   const tasks = await readData();
