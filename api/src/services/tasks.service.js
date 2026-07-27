@@ -1,36 +1,43 @@
 const {
   findAll,
   findById,
-  insert,
+  save,
   update,
 } = require("../models/task.model.js");
+const { generateTaskId } = require("../utils/helpers.js");
 
-exports.getAllPendingTasks = async () => {
+exports.getPendingTasks = async () => {
   const tasks = await findAll();
-  console.log(tasks);
   if (tasks.length === 0) {
     throw new Error("There are no task data.");
   }
   const pendingTasks = tasks.filter((task) => task.completed === false);
   if (pendingTasks.length === 0) {
-    return "There are no pending tasks.";
+    return [];
   }
   return pendingTasks;
 };
 
-exports.getAllCompleteTasks = exports.getTaskById = async (id) => {
+exports.getTaskById = async (id) => {
   const task = await findById(id);
-  if (task.length === 0) {
+  if (!task) {
     throw new Error("Not found");
   }
   return task;
 };
 
-exports.storeNewTask = async (newTask) => {
-  const tasks = await getAll();
-  if (Array.isArray(tasks)) {
-    tasks.push(newTask);
-    await storeTask(tasks);
-  }
-  return tasks;
+exports.createTask = async (taskData) => {
+  const tasks = await findAll();
+  const newTask = {
+    id: generateTaskId(),
+    title: taskData.title,
+    date: taskData.date || new Date().toISOString().split("T")[0],
+    priority: taskData.priority || "medium",
+    category: taskData.category || "personal",
+    completed: false,
+    createdAt: new Date().toISOString(),
+  };
+  tasks.push(newTask);
+  await save(tasks);
+  return newTask;
 };
