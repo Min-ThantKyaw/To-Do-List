@@ -1,14 +1,14 @@
 const responseHandler = (req, res, next) => {
-	res.success = (data = null, message = 'Success', statusCode = 200) => {
-		return res.status(statusCode).json({
-			success: true,
-			message,
-			status: statusCode,
-			data,
-		});
-	};
+  res.success = (data = null, message = "Success", statusCode = 200) => {
+    return res.status(statusCode).json({
+      success: true,
+      message,
+      status: statusCode,
+      data,
+    });
+  };
 
-	next();
+  next();
 };
 
 module.exports = responseHandler;

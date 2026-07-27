@@ -1,45 +1,42 @@
-
 /** @type {*} */
-const { getAllTasks, getTaskById } = require('../services/tasks.service');
-
+const taskService = require("../services/tasks.service");
 
 /**
- * 
- * Get all tasks
  *
  * @param {*} req
  * @param {*} res
+ * @param {*} next
+ * @returns
  */
-exports.getTasks = async (req, res) => {
-	try {
-		const tasks = await getAllTasks();
-		return res.success(tasks, 'Get all tasks successfully.');
-	} catch (err) {
-		return res.error(err.message, 500);
-	}
+exports.getTasks = async (req, res, next) => {
+  try {
+    const tasks = await taskService.getAllPendingTasks();
+    return res.success(tasks, "Get all tasks successfully.");
+  } catch (error) {
+    next(error);
+  }
 };
 
-exports.getTask = async (req, res) => {
-	try {
-		const taskId = req.params.id;
-		const task = await getTaskById(taskId);
-		if (!task) {
-			return res.error(`Task with id ${taskId} not found.`, 404);
-		}
-		return res.success(task, `Get id ${taskId} successfully.`);
-	} catch (err) {
-		return res.error(err.message, 500);
-	}
+exports.getTaskById = async (req, res, next) => {
+  try {
+    const taskId = req.params.id;
+    const task = await getTaskById(taskId);
+    return res.success(task, `Get id ${taskId} successfully.`);
+  } catch (error) {
+    next(error);
+  }
 };
 
-const createTask = async (req, res) => {
-
+exports.createTask = async (req, res, next) => {
+  try {
+    const formData = req.body;
+    const newTask = await storeNewTask(formData);
+    res.success(newTask, `Task was created successfully.`);
+  } catch (error) {
+    next(error);
+  }
 };
 
-const updateTask = async (req, res) => {
+exports.deleteTask = async (req, res, next) => {};
 
-};
-
-const deleteTask = async (req, res) => {
-
-};
+exports.updateTask = async (req, res, next) => {};
