@@ -41,4 +41,14 @@ exports.deleteTask = async (req, res, next) => {
   }
 };
 
-exports.updateTask = async (req, res, next) => {};
+exports.updateTask = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const formData = req.body;
+    const {success, message, data} = await taskService.updateTask(id, formData);
+    if (!success) return res.status(404).json(data);
+    return res.success(data,message);
+  } catch (error) {
+    next(error);
+  }
+};
