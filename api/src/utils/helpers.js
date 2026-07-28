@@ -1,3 +1,3 @@
-exports.generateTaskId = () => {
-  return `todo-${Date.now()}`;
+exports.generateId = () => {
+  return crypto.randomUUID();
 };
