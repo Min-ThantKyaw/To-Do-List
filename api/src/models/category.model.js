@@ -18,7 +18,6 @@ exports.findAll = async () => {
 
 exports.findById = async (id) => {
     const categories = await readData();
-    console.log(Array.isArray(categories));
     const category = categories.find((category) => category.id === id );
     if(!category) throw new Error ("Not found category");
     return category;
