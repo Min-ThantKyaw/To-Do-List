@@ -1,9 +1,9 @@
 import { toggleTheme } from './ui/theme.js'
-import { toggleSideBar } from './ui/sidebar.js'
-
-function initApp() {
-
-}
+import { initSidebar, updateSidebar } from './ui/sidebar.js'
 
 document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-document.getElementById('sidebarToggle').addEventListener('click', toggleSideBar);
+function initApp() {
+    initSidebar();
+}
+
+window.addEventListener('DOMContentLoaded', initApp);
