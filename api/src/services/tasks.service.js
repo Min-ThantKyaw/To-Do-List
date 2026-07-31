@@ -10,9 +10,12 @@ const { generateId } = require("../utils/helpers.js");
 exports.getPendingTasks = async () => {
   const tasks = await findAll();
   if (tasks.length === 0) {
-    return { success: true, message: "No tasks found.", data: [] };
+    return { success: true, message: "Not found tasks.", data: [] };
   }
   const pendingTasks = tasks.filter((task) => task.completed === false);
+  if(pendingTasks.length === 0){
+    return { success: true, message: "There are no pending tasks.", data: [] };
+  }
   return {
     success: true,
     message: "Pending tasks retrieved successfully.",
