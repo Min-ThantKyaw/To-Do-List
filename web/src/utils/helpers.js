@@ -2,7 +2,7 @@ export function formatDate(dateInput, locale = 'en-US') {
     const date = new Date(dateInput);
     
     if (isNaN(date)) {
-      return 'Invalid Date';
+      return '—';
     }
   
     return new Intl.DateTimeFormat(locale, {
@@ -11,4 +11,3 @@ export function formatDate(dateInput, locale = 'en-US') {
       day: 'numeric'
     }).format(date);
   }
-  
