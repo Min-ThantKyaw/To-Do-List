@@ -1,4 +1,4 @@
-function formatDate(dateInput, locale = 'en-US') {
+export function formatDate(dateInput, locale = 'en-US') {
     const date = new Date(dateInput);
     
     if (isNaN(date)) {
@@ -12,4 +12,3 @@ function formatDate(dateInput, locale = 'en-US') {
     }).format(date);
   }
   
-  module.exports = { formatDate };
