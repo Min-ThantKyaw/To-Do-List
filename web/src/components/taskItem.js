@@ -1,4 +1,5 @@
 import { formatDate } from '../utils/helpers.js';
+import { getActiveTab } from '../ui/sidebar.js'
 
 const priorityColors = {
     high: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
@@ -6,6 +7,22 @@ const priorityColors = {
     low: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
 };
 
+export function createTitle(activeTab) {
+    const activeTabTitle = document.getElementById('activeTabTitle');
+    switch (activeTab) {
+        case 'today':
+            activeTabTitle.textContent = "Today Tasks";
+            break;
+        case 'upcoming':
+            activeTabTitle.textContent = "Upcoming Tasks";
+            break;
+        case 'completed':
+            activeTabTitle.textContent = "Completed Tasks";
+            break;
+        default:
+            activeTabTitle.textContent = "Today Tasks";
+    }
+}
 export function createTaskItem(task, handlers = {}) {
     const { onToggle, onEdit, onDelete } = handlers;
 

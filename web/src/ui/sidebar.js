@@ -2,6 +2,8 @@ const STORAGE_KEY = 'sidebar';
 let isSidebarOpen = JSON.parse(localStorage.getItem(STORAGE_KEY)) || false;
 const backdrop = document.getElementById('sidebarBackdrop');
 const sidebar = document.getElementById('sidebar');
+const sidebarMenu = document.getElementById('sidebarMenu');
+const tabItems = sidebarMenu.querySelectorAll('.tab-item');
 
 function isMobileView(){
     return window.innerWidth < 1024;
@@ -53,5 +55,37 @@ export function initSidebar() {
     window.addEventListener('resize', updateSidebar);
     updateSidebar();
 }
+
+let onTabChangeCallback = null;
+
+function storeActiveTab(tabId) {
+    localStorage.setItem('activeTab', tabId);
+    if (onTabChangeCallback) onTabChangeCallback(tabId);
+}
+export function getActiveTab() {
+    return localStorage.getItem('activeTab');
+}
+export function onTabChange(callback) {
+    onTabChangeCallback = callback;
+}
+
+function handleTabClick(event) {
+    event.preventDefault();
+    const clickedTab = event.target.closest('.tab-item');
+    console.log(clickedTab);
+    if(clickedTab){
+        const tabId = clickedTab.dataset.tab;
+        console.log(tabId);
+        tabItems.forEach(item => {
+            item.classList.remove('active');
+        });
+        clickedTab.classList.add('active');
+        storeActiveTab(tabId);
+    }
+}
+
+tabItems.forEach(item => {
+    item.addEventListener('click', (event) => handleTabClick(event));
+});
 
 
