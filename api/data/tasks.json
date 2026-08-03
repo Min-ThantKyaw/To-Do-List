@@ -11,10 +11,10 @@
   {
     "id": "todo-102",
     "title": "Gym workout",
-    "date": "2026-07-24",
+    "date": "2026-08-04",
     "priority": "medium",
     "category": "Health",
-    "completed": true,
+    "completed": false,
     "createdAt": "2026-07-19T08:00:00.000Z"
   },
   {
@@ -53,5 +53,14 @@
     "category": "School",
     "completed": false,
     "createdAt": "2026-07-28T06:51:17.994Z"
+  },
+  {
+    "id": "38d537d6-b779-4a02-956d-60addfce6b72",
+    "title": "Gym workout",
+    "date": "2026-08-04",
+    "priority": "medium",
+    "category": "School",
+    "completed": false,
+    "createdAt": "2026-08-03T15:17:01.803Z"
   }
 ]

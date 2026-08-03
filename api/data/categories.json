@@ -1,31 +1,9 @@
 [
   {
-    "id": "cat-102",
-    "name": "Shopping",
+    "id": "63209916-c30c-4134-b98a-e091d23f6eca",
+    "name": "dsfsdfsdfsdfs",
     "color": "blue",
-    "icon": "test-cart",
-    "created_at": "2026-07-19T08:00:00Z",
-    "updated_date": "2026-07-29T05:13:08.554Z"
-  },
-  {
-    "id": "cat-103",
-    "name": "Shopping",
-    "color": "red",
-    "icon": "shopping-cart",
-    "created_at": "2026-07-19T08:00:00Z"
-  },
-  {
-    "id": "d6c7a341-8571-4b15-9087-3da39d31ca23",
-    "name": "Shopping",
-    "color": "blue",
-    "icon": "test-cart",
-    "created_at": "2026-07-29T05:13:30.636Z"
-  },
-  {
-    "id": "8fa38808-0cab-4f69-8715-6a22f7eb16ad",
-    "name": "Shopping",
-    "color": "blue",
-    "icon": "test-cart",
-    "created_at": "2026-07-29T05:14:10.444Z"
+    "icon": "",
+    "created_at": "2026-08-01T06:59:21.586Z"
   }
 ]
