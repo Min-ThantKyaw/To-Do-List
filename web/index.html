@@ -56,6 +56,7 @@
                 <i class="ph ph-magnifying-glass text-gray-400"></i>
               </span>
               <input
+                id="searchInput"
                 type="text"
                 class="block w-full rounded-full border-0 py-1.5 pl-10 pr-4 text-gray-900 dark:text-white dark:bg-gray-800 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
                 placeholder="Search tasks..."
@@ -275,53 +276,26 @@
             <div class="mt-4 sm:mt-0 flex gap-2">
               <!-- Sort Dropdown -->
               <div class="relative inline-block text-left">
-                <button
-                  type="button"
+                <label for="sortSelect" class="sr-only">Sort tasks</label>
+                <select
+                  id="sortSelect"
                   class="inline-flex justify-center w-full rounded-md border border-gray-300 dark:border-gray-700 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                  id="sort-menu-button"
                 >
-                  <i class="ph ph-faders mr-2 text-lg"></i>
-                  Sort
-                </button>
+                  <option value="date">Sort by date</option>
+                  <option value="priority">Sort by priority</option>
+                  <option value="title">Sort by title</option>
+                </select>
               </div>
 
               <button
-                onclick="
-                  document
-                    .getElementById('addTaskModal')
-                    .classList.remove('hidden')
-                "
+                id="addTaskBtn"
+                type="button"
                 class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
                 <i class="ph ph-plus mr-2 text-lg"></i>
                 Add Task
               </button>
             </div>
-          </div>
-
-          <div class="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
-            <span
-              class="inline-flex items-center rounded-full bg-blue-100 dark:bg-blue-900/30 px-3 py-0.5 text-sm font-medium text-blue-800 dark:text-blue-300"
-            >
-              Category: Work
-              <button
-                type="button"
-                class="ml-1.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-500 focus:bg-blue-500 focus:text-white focus:outline-none"
-              >
-                <i class="ph ph-x"></i>
-              </button>
-            </span>
-            <span
-              class="inline-flex items-center rounded-full bg-red-100 dark:bg-red-900/30 px-3 py-0.5 text-sm font-medium text-red-800 dark:text-red-300"
-            >
-              Priority: High
-              <button
-                type="button"
-                class="ml-1.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-red-400 hover:bg-red-200 hover:text-red-500 focus:bg-red-500 focus:text-white focus:outline-none"
-              >
-                <i class="ph ph-x"></i>
-              </button>
-            </span>
           </div>
 
           <div class="">
@@ -376,135 +350,7 @@
         class="fixed inset-0 bg-gray-900/80 transition-opacity cursor-pointer"
       ></div>
 
-      <div class="fixed inset-0 z-10 overflow-y-auto">
-        <div
-          class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
-        >
-          <!-- Modal panel -->
-          <div
-            class="relative transform overflow-hidden rounded-lg bg-white dark:bg-dark text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-gray-200 dark:border-gray-700"
-          >
-            <div class="px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-              <div class="sm:flex sm:items-start">
-                <div
-                  class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full"
-                >
-                  <h3
-                    class="text-lg font-semibold leading-6 text-gray-900 dark:text-white"
-                    id="modal-title"
-                  >
-                    Create New Task
-                  </h3>
 
-                  <form class="mt-4 space-y-4" id="taskForm">
-                    <!-- Title -->
-                    <div>
-                      <label for="title" class="sr-only">Task Title</label>
-                      <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        class="block w-full rounded-md py-2 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                        placeholder="What needs to be done?"
-                      />
-                      <span
-                        class="error-msg text-red-600 font-extralight text-sm"
-                      ></span>
-                    </div>
-
-                    <!-- Grid for Filters (Date, Category, Priority) -->
-                    <div
-                      class="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2"
-                    >
-                      <!-- Due Date -->
-                      <div>
-                        <label
-                          for="date"
-                          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200"
-                          >Due Date</label
-                        >
-                        <div class="relative mt-1">
-                          <input
-                            type="date"
-                            id="date"
-                            name="date"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white dark:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6 custom-date-input"
-                          />
-                          <span
-                            class="error-msg text-red-600 font-extralight text-sm"
-                          ></span>
-                        </div>
-                      </div>
-
-                      <!-- Priority -->
-                      <div>
-                        <label
-                          for="priority"
-                          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200"
-                          >Priority</label
-                        >
-                        <select
-                          id="priority"
-                          name="priority"
-                          class="mt-1 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 dark:text-white dark:bg-gray-800 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
-                        >
-                          <option value="low">Low</option>
-                          <option value="medium">Medium</option>
-                          <option value="high">High</option>
-                        </select>
-                        <span
-                          class="error-msg text-red-600 font-extralight text-sm"
-                        ></span>
-                      </div>
-
-                      <!-- Category -->
-                      <div class="sm:col-span-2">
-                        <label
-                          for="category"
-                          class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200"
-                          >Category / Project</label
-                        >
-                        <select
-                          id="category"
-                          name="category"
-                          class="mt-1 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 dark:text-white dark:bg-gray-800 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6"
-                        >
-                          <option value="work">Work</option>
-                          <option value="personal">Personal</option>
-                          <option value="shopping">Shopping</option>
-                        </select>
-                        <span
-                          class="error-msg text-red-600 font-extralight text-sm"
-                        ></span>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- Modal Actions -->
-            <div
-              class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-200 dark:border-gray-700"
-            >
-              <button
-                type="submit"
-                form="taskForm"
-                id="saveTaskBtn"
-                class="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto"
-              >
-                Save Task
-              </button>
-              <button
-                type="button"
-                id="cancelTaskBtn"
-                class="mt-3 inline-flex w-full justify-center rounded-md bg-white dark:bg-gray-700 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-gray-200 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 sm:mt-0 sm:w-auto"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </body>
   <script type="module" src="src/main.js"></script>

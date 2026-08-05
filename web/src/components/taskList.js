@@ -1,18 +1,27 @@
-import { createTaskItem, createTitle } from './TaskItem.js';
-import { filterTasks } from '../utils/helpers.js';
-import { getActiveTab } from '../ui/sidebar.js';
+import { createTaskItem } from './taskItem.js';
 
-export function renderTasks(activeTab= "today",container, tasks, handlers = {}) {
-    container.innerHTML = '';
-    activeTab = getActiveTab();
-    createTitle(activeTab);
-    const filtertasks = filterTasks(tasks, activeTab);
-    if (filtertasks.length === 0) {
-        container.innerHTML = `<p class="py-8 text-center text-sm text-gray-500 dark:text-gray-400">There is no task to do.</p>`;
-        return;
-    }
+function renderList(container, tasks, handlers, emptyMessage) {
+  container.innerHTML = '';
 
-    const fragment = document.createDocumentFragment();
-    filtertasks.forEach((task) => fragment.append(createTaskItem(task, handlers)));
-    container.append(fragment);
+  if (!tasks.length) {
+    container.innerHTML = `<li class="py-8 text-center text-sm text-gray-500 dark:text-gray-400">${emptyMessage}</li>`;
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  tasks.forEach((task) => fragment.append(createTaskItem(task, handlers)));
+  container.append(fragment);
+}
+
+export function renderPending(container, tasks, handlers = {}) {
+  renderList(container, tasks, handlers, 'No pending tasks match this view.');
+}
+
+export function renderCompleted(container, tasks, handlers = {}) {
+  renderList(container, tasks, handlers, 'No completed tasks yet.');
+}
+
+export function updateCompletedBadge(count) {
+  const badge = document.querySelector('.badge');
+  if (badge) badge.textContent = String(count);
 }
