@@ -19,8 +19,7 @@ exports.findAll = async () => {
 exports.findById = async (id) => {
   const tasks = await readData();
   const task = tasks.find((task) => task.id === id);
-  if (!task) throw new Error("No task found");
-  return task;
+  return task || null;
 };
 
 exports.save = async (tasks) => {
@@ -39,5 +38,7 @@ exports.update = async (id, updateTask) => {
   const taskIndex = tasks.findIndex((task) => task.id === id);
   if (taskIndex === -1) throw new Error("Task not found.");
   tasks[taskIndex] = { ...tasks[taskIndex], ...updateTask };
-  return await writeData(tasks);
+  console.log("Updated task:", tasks[taskIndex]); // Log the updated task
+  await writeData(tasks);
+  return tasks[taskIndex];
 };

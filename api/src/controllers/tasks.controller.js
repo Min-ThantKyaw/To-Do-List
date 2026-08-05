@@ -2,7 +2,7 @@ const taskService = require("../services/tasks.service");
 
 exports.getTasks = async (req, res, next) => {
   try {
-    const result = await taskService.getPendingTasks();
+    const result = await taskService.getTasks();
     return res.success(result.data, result.message);
   } catch (error) {
     next(error);
@@ -24,6 +24,7 @@ exports.createTask = async (req, res, next) => {
   try {
     const formData = req.body;
     const result = await taskService.createTask(formData);
+    if (!result.success) return res.status(400).json(result);
     return res.success(result.data, result.message);
   } catch (error) {
     next(error);

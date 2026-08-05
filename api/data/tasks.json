@@ -9,15 +9,6 @@
     "createdAt": "2026-07-20T14:30:00.000Z"
   },
   {
-    "id": "todo-102",
-    "title": "Gym workout",
-    "date": "2026-08-04",
-    "priority": "medium",
-    "category": "Health",
-    "completed": true,
-    "createdAt": "2026-07-19T08:00:00.000Z"
-  },
-  {
     "id": "todo-1785213537377",
     "title": "Buy groceries",
     "date": "2026-07-35",
@@ -73,30 +64,21 @@
     "createdAt": "2026-08-05T07:09:40.808Z"
   },
   {
-    "id": "c72d01b1-acec-4829-ab85-872cd91a81f1",
-    "title": "Gym workout",
+    "id": "97611acd-45bb-4b99-97e1-aeabb0484861",
+    "title": "I",
     "date": "2026-08-05",
     "priority": "medium",
-    "category": "School",
+    "category": "Personal",
     "completed": false,
-    "createdAt": "2026-08-05T07:10:03.236Z"
+    "createdAt": "2026-08-05T09:52:48.822Z"
   },
   {
-    "id": "dbc331c9-e741-4c8c-8c26-24c1fff5ceca",
-    "title": "Gym workout",
-    "date": "2026-08-06",
+    "id": "40ca3095-a86f-45d3-8f05-ddca79e43636",
+    "title": "J",
+    "date": "2026-08-05",
     "priority": "medium",
-    "category": "School",
+    "category": "Personal",
     "completed": false,
-    "createdAt": "2026-08-05T07:23:57.109Z"
-  },
-  {
-    "id": "62180468-f8ce-4d63-8466-9683480ae27b",
-    "title": "vdvdsfdsfdfs",
-    "date": "2026-08-08",
-    "priority": "medium",
-    "category": "Hello",
-    "completed": false,
-    "createdAt": "2026-08-05T08:25:14.219Z"
+    "createdAt": "2026-08-05T09:52:53.290Z"
   }
 ]

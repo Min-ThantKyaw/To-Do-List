@@ -7,19 +7,15 @@ const {
 } = require("../models/task.model.js");
 const { generateId } = require("../utils/helpers.js");
 
-exports.getPendingTasks = async () => {
+exports.getTasks = async () => {
   const tasks = await findAll();
   if (tasks.length === 0) {
     return { success: true, message: "Not found tasks.", data: [] };
   }
-  const pendingTasks = tasks.filter((task) => task.completed === false);
-  if(pendingTasks.length === 0){
-    return { success: true, message: "There are no pending tasks.", data: [] };
-  }
   return {
     success: true,
-    message: "Pending tasks retrieved successfully.",
-    data: pendingTasks,
+    message: "Tasks retrieved successfully.",
+    data: tasks,
   };
 };
 
@@ -33,9 +29,12 @@ exports.getTaskById = async (id) => {
 
 exports.createTask = async (taskData) => {
   const tasks = await findAll();
+  if (!taskData.title || !taskData.title.trim()) {
+    return { success: false, message: "Task title is required.", data: null };
+  }
   const newTask = {
     id: generateId(),
-    title: taskData.title,
+    title: taskData.title.trim(),
     date: taskData.date || new Date().toISOString().split("T")[0],
     priority: taskData.priority || "medium",
     category: taskData.category || "personal",
@@ -66,7 +65,7 @@ exports.updateTask = async (id, taskData) => {
 
   const updatedTaskData = {
     ...existingTask,
-    title: taskData.title !== undefined ? taskData.title : existingTask.title,
+    title: taskData.title !== undefined ? taskData.title.trim() : existingTask.title,
     date: taskData.date || existingTask.date || new Date().toISOString().split("T")[0],
     priority: taskData.priority || existingTask.priority || "medium",
     category: taskData.category || existingTask.category || "personal",

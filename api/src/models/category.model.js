@@ -19,8 +19,7 @@ exports.findAll = async () => {
 exports.findById = async (id) => {
     const categories = await readData();
     const category = categories.find((category) => category.id === id );
-    if(!category) throw new Error ("Not found category");
-    return category;
+    return category || null;
 }
 
 exports.save = async (data) => {
@@ -39,5 +38,6 @@ exports.update = async (id, updateData) => {
     const categoryIndex = categories.findIndex((category) => category.id === id);
     if (categoryIndex === -1) throw new Error("Category not found.");
     categories[categoryIndex] = { ...categories[categoryIndex], ...updateData };
-    return await writeData(categories);
+    await writeData(categories);
+    return categories[categoryIndex];
 }
