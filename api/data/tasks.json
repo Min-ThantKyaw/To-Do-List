@@ -14,7 +14,7 @@
     "date": "2026-08-04",
     "priority": "medium",
     "category": "Health",
-    "completed": false,
+    "completed": true,
     "createdAt": "2026-07-19T08:00:00.000Z"
   },
   {
@@ -62,5 +62,32 @@
     "category": "School",
     "completed": false,
     "createdAt": "2026-08-03T15:17:01.803Z"
+  },
+  {
+    "id": "8fe8f0bf-305d-467c-a8d5-c504fc561e4e",
+    "title": "Gym workout",
+    "date": "2026-08-04",
+    "priority": "medium",
+    "category": "School",
+    "completed": false,
+    "createdAt": "2026-08-05T07:09:40.808Z"
+  },
+  {
+    "id": "c72d01b1-acec-4829-ab85-872cd91a81f1",
+    "title": "Gym workout",
+    "date": "2026-08-05",
+    "priority": "medium",
+    "category": "School",
+    "completed": false,
+    "createdAt": "2026-08-05T07:10:03.236Z"
+  },
+  {
+    "id": "dbc331c9-e741-4c8c-8c26-24c1fff5ceca",
+    "title": "Gym workout",
+    "date": "2026-08-06",
+    "priority": "medium",
+    "category": "School",
+    "completed": false,
+    "createdAt": "2026-08-05T07:23:57.109Z"
   }
 ]
