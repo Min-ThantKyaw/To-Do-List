@@ -1,146 +1,154 @@
 # TaskMaster
 
-A simple full-stack Todo List application built for learning Node.js, Express, and vanilla JavaScript.
-
----
+A full-stack todo dashboard built with Node.js, Express, Tailwind CSS, and vanilla JavaScript.
 
 ## Overview
 
-TaskMaster is a dashboard-style todo app where you can create tasks, organize them by category, set priorities and due dates, and mark them as complete.
-
-This project is intentionally kept simple so you can focus on learning how a frontend, backend, and JSON storage work together.
-
----
+TaskMaster lets you create, edit, organize, search, sort, complete, and delete tasks. Tasks are stored in JSON files through a small Express API, while the frontend uses ES modules with a layered vanilla JavaScript architecture.
 
 ## Features
 
-- [ ] Add, view, and delete tasks
-- [ ] Set priority (low, medium, high)
-- [ ] Set due dates
-- [ ] Organize tasks by category
-- [ ] Mark tasks as completed
-- [ ] Dark mode support
-- [ ] Responsive sidebar
-
----
+- [x] Add, view, edit, and delete tasks
+- [x] Set priority: low, medium, or high
+- [x] Set due dates
+- [x] Organize tasks by category
+- [x] Add, select, and delete categories
+- [x] Mark tasks as completed
+- [x] Search tasks by title
+- [x] Sort tasks by date, priority, or title
+- [x] Today, upcoming, and completed task views
+- [x] Dark mode support
+- [x] Responsive sidebar
 
 ## Tech Stack
 
 | Layer | Technology |
-|-------|------------|
-| Frontend | HTML, Tailwind CSS, vanilla JavaScript |
+| --- | --- |
+| Frontend | HTML, Tailwind CSS, vanilla JavaScript ES modules |
 | Backend | Node.js, Express |
 | Storage | JSON files |
 
----
-
 ## Project Structure
 
-```
+```text
 Todo-List/
-├── api/                    # Backend
-│   ├── app.js              # Express app setup
-│   ├── server.js           # Server entry point
-│   ├── data/               # JSON storage files
-│   ├── src/
-│   │   ├── controllers/    # Request/response handlers
-│   │   ├── models/         # JSON file read/write
-│   │   ├── routes/         # API route definitions
-│   │   ├── services/       # Business logic and validation
-│   │   └── middleware/     # Error handling, etc.
-│   └── 
-├── web/                    # Frontend
-│   ├── index.html          # Main page
-│   ├── src/
-│   │   ├── api/            # Backend API calls
-│   │   ├── components/     # UI components
-│   │   ├── services/       # Frontend business logic
-│   │   ├── utils/          # Helpers
-│   │   └── styles/         # Custom styles
-│   └── script.js           # Old single-file script (reference)
-├── DESIGN.md               # Full application design
-└── README.md
+|-- api/
+|   |-- app.js
+|   |-- server.js
+|   |-- data/
+|   |   |-- categories.json
+|   |   `-- tasks.json
+|   `-- src/
+|       |-- controllers/
+|       |-- middleware/
+|       |-- models/
+|       |-- routes/
+|       |-- services/
+|       `-- utils/
+|-- web/
+|   |-- index.html
+|   |-- src/
+|   |   |-- api/
+|   |   |-- components/
+|   |   |-- services/
+|   |   |-- ui/
+|   |   `-- utils/
+|   `-- dist/
+`-- README.md
 ```
-
----
 
 ## Getting Started
 
-### 1. Clone or open the project
+### 1. Install dependencies
 
 ```bash
-cd Todo-List
+cd api
+npm install
+
+cd ../web
+npm install
 ```
 
 ### 2. Start the backend
 
 ```bash
 cd api
-npm install
 npm run dev
 ```
 
 The backend runs at:
 
 ```text
-http://localhost:3000
+http://localhost:3001
 ```
 
-### 3. Start the frontend
+### 3. Build frontend CSS
 
-Open a new terminal:
+```bash
+cd web
+npm run build:css
+```
+
+### 4. Start the frontend
+
+The frontend must be served from a static server because it uses ES modules.
 
 ```bash
 cd web
 npx serve .
 ```
 
-Then open the URL shown in your terminal, for example:
+Open the URL printed by the server. If you use Python instead:
 
-```text
-http://localhost:3001
+```bash
+cd web
+python -m http.server 3002
 ```
 
-> Note: The frontend needs a static file server because it uses ES modules.
+Then open:
 
----
+```text
+http://localhost:3002/index.html
+```
 
 ## API Overview
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `GET` | `/api/tasks` | Get all tasks |
+| `GET` | `/api/tasks/:id` | Get one task |
 | `POST` | `/api/tasks` | Create a task |
 | `PUT` | `/api/tasks/:id` | Update a task |
 | `DELETE` | `/api/tasks/:id` | Delete a task |
-| `PATCH` | `/api/tasks/:id/toggle` | Toggle completion |
 | `GET` | `/api/categories` | Get all categories |
+| `GET` | `/api/categories/:id` | Get one category |
 | `POST` | `/api/categories` | Create a category |
+| `PUT` | `/api/categories/:id` | Update a category |
 | `DELETE` | `/api/categories/:id` | Delete a category |
 
-See `api/BACKEND.md` for full API documentation.
+## Verification
 
----
+Run the backend tests:
 
-## Documentation
+```bash
+cd api
+node --test
+```
 
-- [`DESIGN.md`](./DESIGN.md) — Application architecture, data models, and design decisions
-- [`api/BACKEND.md`](./api/BACKEND.md) — Backend structure and API details
+Build the frontend CSS:
 
----
+```bash
+cd web
+npm run build:css
+```
 
 ## Learning Goals
 
-This project helps you practice:
-
-- Building an Express API with routes, controllers, services, and models
-- Reading and writing JSON files with `fs/promises`
-- Using vanilla JavaScript ES modules in the browser
-- Fetching data from a backend API
-- Separating frontend code into components and services
-- Handling CORS between frontend and backend
-
----
+- Build an Express API with routes, controllers, services, models, and middleware
+- Persist data using JSON files and `fs/promises`
+- Use vanilla JavaScript ES modules in the browser
+- Keep frontend API, service, component, UI, and utility layers separated
+- Handle CORS between a static frontend and local backend API
 
 ## License
 
